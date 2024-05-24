@@ -13,12 +13,17 @@ export class WorkerService implements OnDestroy {
     this.initialize();
   }
 
-  initialize() {
+  async initialize() {
     
     if (this.swUpdate.isEnabled) {
       // If service worker is enabled
       console.log("click",'Service worker running.');
-      this.serviceSubscriptions.push(interval(15 * 1000).subscribe(() => this.swUpdate.checkForUpdate()));
+      const updateFound = await this.swUpdate.checkForUpdate();
+      console.log(updateFound ? 'A new version is available.' : 'Already on the latest version.');
+      this.serviceSubscriptions.push(interval(15 * 1000).subscribe(async () => {
+        }));
+
+      
       this.serviceSubscriptions.push(
         this.swUpdate.versionUpdates.subscribe(async evt => {
           console.log("service worker active",evt);

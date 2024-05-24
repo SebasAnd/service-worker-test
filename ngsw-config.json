@@ -23,14 +23,23 @@
         "files": [
           "/assets/**",
           "/*.(svg|cur|jpg|jpeg|png|apng|webp|avif|gif|otf|ttf|woff|woff2)"
+          
+        ],
+        "urls": [
+          "!/**/assets/icons/icon-72x72.png",
+                  "!assets/icons/icon-96x96.png",
+                  "!/assets/icons/icon-128x128.png",
+                  "!https://images.nationalgeographic.org/image/upload/t_edhub_resource_key_image/v1638882786/EducationHub/photos/sun-blasts-a-m66-flare.jpg"
+
         ]
       }
     }
+    
   ],
   "dataGroups": [
     {
       "name": "default-api-call",
-      "urls": ["http://localhost:3000/DefaultService"],
+      "urls": ["!http://localhost:3000/DefaultService"],
       "version": 2,
       "cacheConfig": {
         "maxAge": "1h",
@@ -38,6 +47,17 @@
         "strategy": "freshness",
         "timeout": "5s"
       }
+    },{
+        "name": "mycrapyimages",
+        "urls": [ "!/**/assets/icons/icon-72x72.png",
+                  "!assets/icons/icon-96x96.png",
+                  "!http://127.0.0.1:8082/assets/icons/icon-128x128.png",
+                  "!https://images.nationalgeographic.org/image/upload/t_edhub_resource_key_image/v1638882786/EducationHub/photos/sun-blasts-a-m66-flare.jpg"],
+        "cacheConfig": {
+            "maxAge": "1h",
+            "maxSize": 10,
+            "strategy": "freshness"
+        }
     }
   ]
 }
